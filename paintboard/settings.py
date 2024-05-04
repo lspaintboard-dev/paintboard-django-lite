@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ig3s7(*l(1&8v=adx51#k5(_ep6&44n96d@0_oxmzrz!e1qlo#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -73,8 +73,6 @@ WSGI_APPLICATION = 'paintboard.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-import os
 
 DATABASES = {
     'default': {
