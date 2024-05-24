@@ -29,16 +29,6 @@ def initbd():
 
 initbd()
 
-
-def init_dict():
-    for uid in cg.root:
-        Tokenlist.objects.filter(id=uid).delete()
-        Tokenlist.objects.create(id=uid, token=cg.roottext, time=0)
-    tokenlist_all_from_db = Tokenlist.objects.all()
-    for obj in tokenlist_all_from_db:
-        tokenlist[obj.id] = {'token': obj.token, 'time': float(obj.time)}
-
-
 # init_dict()
 
 
@@ -98,25 +88,6 @@ def mkret(status, data, request):
     # return HttpResponse(ret, status=status)
 
 
-def gettk(request):
-    if 1:
-        if request.method == 'POST':
-            uid = request.POST['uid']
-            paste = request.POST['paste']
-        else:
-            uid = request.GET['uid']
-            paste = request.GET['paste']
-        print({"uid": uid, "paste": paste})
-        Tokenlist.objects.filter(id=uid).delete()
-        tk = str(uuid.uuid4())
-        Tokenlist.objects.create(id=uid, token=tk, time=0)
-        tokenlist[uid] = {'token': tk, 'time': 0}
-        # print(tk)
-        return mkret(201, {"token": tk}, request)
-
-    else:
-        pass
-
 
 @gzip_page
 def getboard(request):
@@ -147,24 +118,7 @@ def getboard(request):
 
 
 def checktoken(uid, token):
-    uid = int(uid)
-    get_token_from_dict = tokenlist.get(uid, None)
-    # print(get_token_from_dict)
-    if (get_token_from_dict == None):
-        if (not Tokenlist.objects.filter(id=uid).exists()):
-            return False
-        get_token_from_db = Tokenlist.objects.filter(id=int(uid)).first()
-        tokenlist[uid] = {"token": get_token_from_db.token,
-                          "time": float(get_token_from_db.time)}
-    return (tokenlist[uid]["token"] == token)
-    # dtlist = Tokenlist.objects.filter(id=int(uid))
-    # for data in dtlist:
-    #     try:
-    #         if (data.token == token):
-    #             return 1
-    #     except Exception as ex:
-    #         return 0
-    # return 0
+    return True
 
 
 def paintboard(request):
