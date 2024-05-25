@@ -23,8 +23,6 @@ urlpatterns = [
     path('paintboard/board', views.getboard),
     path('paintboard/paint/', views.paintboard),
     path('paintboard/paint', views.paintboard),
-    path('paintboard/gettoken', views.gettk),
-    path('paintboard/gettoken/', views.gettk),
     path('paintboard/fill', views.fill),
     path('paintboard/fill/', views.fill),
     path('paintboard/fillimg', views.fillimg),
