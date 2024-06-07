@@ -10,7 +10,7 @@ from index.models import *
 import time
 import uuid
 # import json
-import requests
+# import requests
 import index.config as cg
 mapp = []
 lstsavebd = 0.0
